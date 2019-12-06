@@ -1,0 +1,5 @@
+[
+    "directory": ".",
+    "command" : "clangd -I ~/.ManualInstalled/arduino-1.8.9/hardware/arduino/avr/cores/arduino",
+    "file" : "scanner.h"
+]
