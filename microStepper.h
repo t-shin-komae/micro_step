@@ -1,4 +1,31 @@
 #include <stdint.h>
+class periodic_uint {
+    private:
+        uint8_t data;
+        uint8_t init;
+        uint8_t max;
+    public:
+        periodic_uint(uint8_t init,uint8_t max)
+        : init(init),max(max), data(0){}
+        void operator ++(int n){
+            if(this->data == this->max){
+                this->data = this->init;
+            }else{
+                this->data ++;
+            }
+        }
+        void operator --(int n){
+            if(this->data == this->init){
+                this->data = this->max;
+            }else{
+                this->data --;
+            }
+        }
+        operator uint8_t() const {
+            return this->data;
+        }
+}
+
 class microStepper {
     private:
         const uint16_t steps_per_rev;
