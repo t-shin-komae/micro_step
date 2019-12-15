@@ -36,11 +36,13 @@ class microStepper {
         const int16_t step_num;
         uint8_t *wave;
         int16_t rpm;
+        periodic_uint step;
+        periodic_uint phase;
     public:
         microStepper(uint16_t steps_per_rev, uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t pin4)
             : microStepper(steps_per_rev, 16, pin1, pin2, pin3, pin4) {}
         microStepper(uint16_t steps_per_rev, uint8_t step_num, uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t pin4)
-            : steps_per_rev(steps_per_rev), pin1(pin1), pin2(pin2), pin3(pin3), pin4(pin4), step_num(step_num)
+            : steps_per_rev(steps_per_rev), pin1(pin1), pin2(pin2), pin3(pin3), pin4(pin4), step_num(step_num),step(periodic_uint(0,3)),phase(0,step_num-1)
         {
             pinMode(pin1, OUTPUT);
             pinMode(pin2, OUTPUT);
@@ -80,7 +82,6 @@ class microStepper {
             digitalWrite(pin2,LOW);
             digitalWrite(pin3,LOW);
             digitalWrite(pin4,LOW);
-
         }
 
     private:
