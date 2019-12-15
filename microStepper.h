@@ -38,17 +38,21 @@ class microStepper {
         int16_t rpm;
     public:
         microStepper(uint16_t steps_per_rev, uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t pin4)
-            : steps_per_rev(steps_per_rev), pin1(pin1), pin2(pin2), pin3(pin3), pin4(pin4), step_num(64) {
-                pinMode(pin1, OUTPUT);
-                pinMode(pin2, OUTPUT);
-                pinMode(pin3, OUTPUT);
-                pinMode(pin4, OUTPUT);
-                wave = new uint8_t[step_num+1];
-                for(int i=0;i<step_num;i++){
-                    wave[i]=(uint8_t)(255 * sin(PI/(2*step_num)*i));
-                }
-                wave[step_num]=255;
+            : microStepper(steps_per_rev, 16, pin1, pin2, pin3, pin4) {}
+        microStepper(uint16_t steps_per_rev, uint8_t step_num, uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t pin4)
+            : steps_per_rev(steps_per_rev), pin1(pin1), pin2(pin2), pin3(pin3), pin4(pin4), step_num(step_num)
+        {
+            pinMode(pin1, OUTPUT);
+            pinMode(pin2, OUTPUT);
+            pinMode(pin3, OUTPUT);
+            pinMode(pin4, OUTPUT);
+            wave = new uint8_t[step_num + 1];
+            for (int i = 0; i < step_num; i++)
+            {
+                wave[i] = (uint8_t)(255 * sin(PI / (2 * step_num) * i));
             }
+            wave[step_num] = 255;
+        }
         void setSpeed(int16_t rpm) {
             this->rpm = rpm;
         }
