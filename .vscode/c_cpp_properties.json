@@ -1,10 +1,17 @@
 {
+    "env": {
+        "PACKAGES_PATH": "C:\\Users\\shinichi\\arduino-1.8.8-windows\\arduino-1.8.8"
+    },
     "configurations": [
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**",
-                "C:\\Users\\shinichi\\arduino-1.8.8-windows\\arduino-1.8.8\\libraries\\**"
+                "C:\\Users\\shinichi\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\**",
+                "C:\\Users\\shinichi\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.2\\**",
+                "${workspaceFolder}/**"
+            ],
+            "forcedInclude": [
+                "C:\\Users\\shinichi\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.2\\cores\\arduino\\Arduino.h"
             ],
             "defines": [
                 "_DEBUG",
@@ -18,8 +25,11 @@
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
-                    "${workspaceFolder}/**",
-                    "C:\\Users\\shinichi\\arduino-1.8.8-windows\\arduino-1.8.8\\libraries\\**"
+                    "${workspaceFolder}",
+                    "${env:PACKAGES_PATH}/tools",
+                    "${env:PACKAGES_PATH}/hardware",
+                    "${env:PACKAGES_PATH}/libraries",
+                    "${env:USER_PATH}/libraries"
                 ]
             }
         }

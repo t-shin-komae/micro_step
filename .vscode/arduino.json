@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "micro_step.ino",
+    "port": "COM6"
+}
