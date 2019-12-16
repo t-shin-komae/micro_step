@@ -94,19 +94,46 @@ class microStepper {
             unsigned long step_interval = (60UL*1000000UL / ((unsigned long)this->rpm * (unsigned long)steps_per_rev)); 
             // Serial.print("step_interval:");Serial.println(step_interval);
             // Serial.println(step_interval*step/1000000UL);
-            
-            for (int16_t i = 0; i < step ; i++) {
-                do{
-                    // Serial.print("Step:");
-                    // Serial.print(this->step);
-                    // Serial.print("Phase:");
-                    // Serial.println(phase);
-                    unsigned long last = micros();
-                    while(micros()-last < step_interval/step_num){}
-                    output_by_phase_in_micro(this->step,this->phase);
-                    this->phase++;
-                }while (! this->phase.is_init());
-                this->step++;
+
+            if (rotation)
+            {
+                for (int16_t i = 0; i < step; i++)
+                {
+                    do
+                    {
+                        // Serial.print("Step:");
+                        // Serial.print(this->step);
+                        // Serial.print("Phase:");
+                        // Serial.println(phase);
+                        unsigned long last = micros();
+                        while (micros() - last < step_interval / step_num)
+                        {
+                        }
+                        output_by_phase_in_micro(this->step, this->phase);
+                        this->phase++;
+                    } while (!this->phase.is_init());
+                    this->step++;
+                }
+            }
+            else
+            {
+                for (int16_t i = 0; i < step; i++)
+                {
+                    do
+                    {
+                        // Serial.print("Step:");
+                        // Serial.print(this->step);
+                        // Serial.print("Phase:");
+                        // Serial.println(phase);
+                        unsigned long last = micros();
+                        while (micros() - last < step_interval / step_num)
+                        {
+                        }
+                        output_by_phase_in_micro(this->step, this->phase);
+                        this->phase--;
+                    } while (!this->phase.is_max());
+                    this->step--;
+                }
             }
             digitalWrite(pin1,LOW);
             digitalWrite(pin2,LOW);
